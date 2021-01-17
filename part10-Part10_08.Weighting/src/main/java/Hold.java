@@ -1,0 +1,47 @@
+
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class Hold {
+
+    private ArrayList<Suitcase> suitcases;
+    private int maximumWeight;
+
+    public Hold(int maximumWeight) {
+        this.maximumWeight = maximumWeight;
+        this.suitcases = new ArrayList<>();
+    }
+
+    public void addSuitcase(Suitcase Suitcase) {
+        if (this.totalWeight() + Suitcase.totalWeight() > maximumWeight) {
+            return;
+        }
+
+        this.suitcases.add(Suitcase);
+    }
+
+    //method that calculates total weight of items from the list
+    public int totalWeight() {
+        return this.suitcases.stream().map(item -> item.totalWeight()).reduce(0, Integer::sum);
+        
+    }
+
+    //method that prints out all items from the list
+    public void printItems() {
+        this.suitcases.stream().forEach(item -> item.printItems());
+    }
+
+    @Override
+    public String toString() {
+        if (this.suitcases.isEmpty()) {
+            return "no suitcases (0 kg)";
+        }
+
+        if (this.suitcases.size() == 1) {
+            return "1 suitcase (" + this.totalWeight() + " kg)";
+        }
+
+        return this.suitcases.size() + " suitcases (" + this.totalWeight() + " kg)";
+    }
+}
