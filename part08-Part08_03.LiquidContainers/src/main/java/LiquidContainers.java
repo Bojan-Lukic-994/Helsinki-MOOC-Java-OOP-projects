@@ -28,72 +28,60 @@ public class LiquidContainers {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        //initializes the containers
-        int firstContainer = 0;
-        int secondContainer = 0;
+        //creates two integer items - they represent two containers
+        int first = 0;
+        int second = 0;
 
+        //user adds, moves or removes liquid from containers
         while (true) {
+            System.out.println("First: " + first + "/100");
+            System.out.println("Second: " + second + "/100");
+            System.out.print("> ");
 
-            String input = scan.nextLine();
-            if (input.equals("quit")) {
+            //reads the user input
+            String command = scan.nextLine();
+
+            //if user inputs "quit" the program stops
+            if (command.equals("quit")) {
                 break;
             }
 
-            //splits the user input into command add amount
-            String[] parts = input.split(" ");
-            String command = parts[0];
-            int amount = Integer.valueOf(parts[1]);
+            //splits user input into two pieces - command and amount
+            String[] partsOfInput = command.split(" ");
+            command = partsOfInput[0];
+            int amount = Integer.valueOf(partsOfInput[1]);
 
-            //checks if the user wants to add amount to the first container
-            if (command.equals("add")) {
-                if (amount > 0) {
-                    //adds the given amount to the first container
-                    if (firstContainer + amount <= 100) {
-                        firstContainer += amount;
-                    } else {
-                        firstContainer = 100;
-                    }
+            //"add" command adds amount to the first container
+            if (command.equals("add") && amount > 0) {
+                first = first + amount;
+                if (first > 100) {
+                    first = 100;
                 }
-                //prints out the values of first and second container
-                System.out.println("First: " + firstContainer + "/" + 100);
-                System.out.println("Second: " + secondContainer + "/" + 100);
             }
 
-            //checks if the user wants to move amount from first to second container
-            if (command.equals("move")) {
-                if (amount > 0) {
-                    //moves the amount from first container
-                    if (firstContainer - amount >= 0) {
-                        firstContainer -= amount;
-                    } else {
-                        firstContainer = 0;
-                    }
-                    //moves the amount to the second container
-                    if (secondContainer + amount <= 100) {
-                        secondContainer += amount;
-                    } else {
-                        secondContainer = 100;
-                    }
+            //"move" command moves amount from first to second container
+            if (command.equals("move") && amount > 0) {
+                if (amount > first) {
+                    amount = first;
                 }
-                //prints out the values of first and second container
-                System.out.println("First: " + firstContainer + "/" + 100);
-                System.out.println("Second: " + secondContainer + "/" + 100);
+
+                first = first - amount;
+                second = second + amount;
+
+                if (second > 100) {
+                    second = 100;
+                }
             }
 
-            //checks if the user wants to remove amount from the second container
-            if (command.equals("remove")) {
-                if (amount > 0) {
-                    //removes amount from the second container
-                    if (secondContainer - amount >= 0) {
-                        secondContainer -= amount;
-                    } else {
-                        secondContainer = 0;
-                    }
+            //"remove" command removes amount from second container
+            if (command.equals("remove") && amount > 0) {
+                second = second - amount;
+                if (second < 0) {
+                    second = 0;
                 }
-                //prints out the values of first and second container
-                System.out.println("First: " + firstContainer + "/" + 100);
-                System.out.println("Second: " + secondContainer + "/" + 100);
             }
+
+            System.out.println("");
         }
     }
 }
