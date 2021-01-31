@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 public class TodoList {
@@ -17,8 +16,8 @@ public class TodoList {
 
     //method that prints out the exercises
     public void print() {
-        for (int i = 1; i < this.list.size(); i++) {
-            System.out.println(i + ": " + this.list.get(i - 1));
+        for (int i = 0; i < this.list.size(); i++) {
+            System.out.println((i + 1) + ": " + this.list.get(i));
         }
     }
 
@@ -27,3 +26,4 @@ public class TodoList {
         this.list.remove(number - 1);
     }
 }
+
