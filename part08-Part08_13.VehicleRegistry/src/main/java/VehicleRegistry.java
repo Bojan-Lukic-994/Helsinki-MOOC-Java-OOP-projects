@@ -1,10 +1,9 @@
-
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class VehicleRegistry {
     
-    HashMap<LicensePlate, String> registy;
+    private HashMap<LicensePlate, String> registy;
     
     public VehicleRegistry() {
         this.registy = new HashMap<>();
@@ -12,12 +11,12 @@ public class VehicleRegistry {
 
     //method that assigns a new owner to the license plate (if it doesn't have one)
     public boolean add(LicensePlate licensePlate, String owner) {
-        this.registy.put(licensePlate, owner);
-        if (this.registy.get(licensePlate).isEmpty()) {
-            return true;
-        } else {
+        if (this.registy.containsKey(licensePlate)) {
             return false;
         }
+ 
+        this.registy.put(licensePlate, owner);
+        return true;
     }
 
     //method that returns the owner of the car corresponding to the given license plate
@@ -31,6 +30,7 @@ public class VehicleRegistry {
             this.registy.remove(licensePlate);
             return true;
         }
+        
         return false;
     }
 
@@ -43,8 +43,22 @@ public class VehicleRegistry {
 
     //method that prints out all the owners of the cars
     public void printOwners() {
-        for (LicensePlate key : this.registy.keySet()) {
-            System.out.println(this.registy.get(key));
+        //creates new empty list of owners
+        ArrayList<String> owners = new ArrayList<>();
+        
+        //filters all owners and ads it to the list
+        for (String owner : this.registy.values()) {
+            if (owners.contains(owner)) {
+                continue;
+            } else {
+                owners.add(owner);
+            }
+        }
+        
+        //prints all the owners of the cars
+        for (String item : owners) {
+            System.out.println(item);
         }
     }
 }
+
