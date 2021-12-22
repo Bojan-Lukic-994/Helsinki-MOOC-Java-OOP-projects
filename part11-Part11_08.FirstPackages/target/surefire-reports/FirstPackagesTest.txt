@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: FirstPackagesTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.247 s <<< FAILURE! - in FirstPackagesTest
+anotherApplication(FirstPackagesTest)  Time elapsed: 0.133 s  <<< FAILURE!
+java.lang.AssertionError: 
+the ApplicationLogic's variable private mooc.ui.UserInterface mooc.logic.ApplicationLogic.ui null. 
+Please set it to the variable passed from the appLogic's constructor!
+	at FirstPackagesTest.anotherApplication(FirstPackagesTest.java:224)
+
+creatingApplicationLogicObject(FirstPackagesTest)  Time elapsed: 0.007 s  <<< FAILURE!
+java.lang.AssertionError: 
+the objectvariable of ApplicationLogic private mooc.ui.UserInterface .ui null. 
+Please set it to the variable passed from the appLogic's constructor!
+	at FirstPackagesTest.creatingApplicationLogicObject(FirstPackagesTest.java:167)
+
