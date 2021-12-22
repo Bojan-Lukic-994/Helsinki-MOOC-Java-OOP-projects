@@ -9,5 +9,4 @@
  * @author Bojan Lukic
  */
 public interface IA {
-    
 }

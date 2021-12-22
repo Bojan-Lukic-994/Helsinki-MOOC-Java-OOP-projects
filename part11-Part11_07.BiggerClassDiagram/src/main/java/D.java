@@ -9,5 +9,5 @@
  * @author Bojan Lukic
  */
 public class D implements IA {
-
+    IA item;
 }
